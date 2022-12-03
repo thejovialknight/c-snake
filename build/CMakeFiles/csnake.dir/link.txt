@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/csnake.dir/src/game.c.o CMakeFiles/csnake.dir/src/main.c.o CMakeFiles/csnake.dir/src/platform.c.o -o /home/thejovialknight/repos/c-snake/bin/csnake  -lSDL2 
