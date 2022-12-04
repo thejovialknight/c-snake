@@ -2,6 +2,7 @@ CMakeFiles/csnake.dir/src/game.c.o: \
  /home/thejovialknight/repos/c-snake/src/game.c \
  /usr/include/stdc-predef.h \
  /home/thejovialknight/repos/c-snake/src/game.h \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
  /home/thejovialknight/repos/c-snake/src/color.h \
  /home/thejovialknight/repos/c-snake/src/platform.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
@@ -153,5 +154,4 @@ CMakeFiles/csnake.dir/src/game.c.o: \
  /usr/include/SDL2/SDL_messagebox.h /usr/include/SDL2/SDL_power.h \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_sensor.h \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
- /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
- /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h
+ /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h

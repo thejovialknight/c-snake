@@ -1,6 +1,7 @@
 #pragma once
+#include <stdbool.h>
 
-struct PlatformInput {
+struct doub {
 	bool w;
 	bool a;
 	bool s;

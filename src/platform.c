@@ -14,8 +14,8 @@ struct Platform init_platform() {
 	return platform;
 }
 
-struct PlatformInput input_from_platform() {
-	struct PlatformInput input;
+struct Input input_from_platform() {
+	struct Input input;
 	SDL_Event event;
 	while(SDL_PollEvent(&event) != 0) {
 		if(event.type == SDL_QUIT) {

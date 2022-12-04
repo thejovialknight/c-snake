@@ -4,6 +4,7 @@
 CMakeFiles/csnake.dir/src/game.c.o: /home/thejovialknight/repos/c-snake/src/game.c \
   /usr/include/stdc-predef.h \
   /home/thejovialknight/repos/c-snake/src/game.h \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
   /home/thejovialknight/repos/c-snake/src/color.h \
   /home/thejovialknight/repos/c-snake/src/platform.h \
   /usr/include/SDL2/SDL.h \
@@ -188,8 +189,7 @@ CMakeFiles/csnake.dir/src/game.c.o: /home/thejovialknight/repos/c-snake/src/game
   /usr/include/SDL2/SDL_shape.h \
   /usr/include/SDL2/SDL_system.h \
   /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h
+  /usr/include/SDL2/SDL_version.h
 
 CMakeFiles/csnake.dir/src/main.c.o: /home/thejovialknight/repos/c-snake/src/main.c \
   /usr/include/stdc-predef.h \
@@ -577,8 +577,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /home/thejovialknight/repos/c-snake/src/platform.c:
 
-/usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h:
-
 /usr/include/SDL2/SDL_version.h:
 
 /usr/include/SDL2/SDL_timer.h:
@@ -661,6 +659,8 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx5124vnniwintrin.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx5124fmapsintrin.h:
+
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/include/SDL2/SDL_blendmode.h:
@@ -711,23 +711,9 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /usr/include/SDL2/SDL_endian.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/9/include/bmiintrin.h:
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
 
-/home/thejovialknight/repos/c-snake/src/game.c:
-
-/usr/include/SDL2/begin_code.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/xsavecintrin.h:
-
-/usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/SDL2/SDL_config.h:
 
@@ -747,6 +733,14 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /home/thejovialknight/repos/c-snake/src/color.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h:
+
+/usr/include/SDL2/SDL_joystick.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/SDL2/SDL_rwops.h:
@@ -759,6 +753,22 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/9/include/bmiintrin.h:
+
+/home/thejovialknight/repos/c-snake/src/game.c:
+
+/usr/include/SDL2/begin_code.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/xsavecintrin.h:
+
 /usr/include/SDL2/SDL_scancode.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
@@ -767,6 +777,8 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
+/usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
+
 /usr/include/SDL2/SDL.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
@@ -774,10 +786,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/movdirintrin.h:
 
@@ -832,12 +840,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 /usr/include/SDL2/SDL_main.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vlintrin.h:
-
-/usr/include/SDL2/SDL_joystick.h:
-
-/usr/include/endian.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
@@ -913,9 +915,9 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/wmmintrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
-
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/fxsrintrin.h:
 
@@ -952,5 +954,3 @@ CMakeFiles/csnake.dir/src/platform.c.o: /home/thejovialknight/repos/c-snake/src/
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512ifmaintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmivlintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx5124fmapsintrin.h:
