@@ -9,13 +9,13 @@ int main(int argc, char* argv[]) {
 	struct Game game;
 
 	int pixel_count = platform.win_w * platform.win_h;
-	struct Color *colors = (struct Color*)malloc(pixel_count * sizeof(struct Color)) ;
+	platform.pixels = (struct Color*)malloc(pixel_count * sizeof(struct Color)) ;
 
 	bool quit = false;
 	while(!quit) {
 		struct Input input = input_from_platform();
-		update_and_render(&game, &input, &colors[0], pixel_count, 0.033);
-		render_to_platform(colors, &platform);
+		update_and_render(&game, &platform, 0.033);
+		render(&platform);
 		quit = input.quit;
 	}
 	return 0;

@@ -1,6 +1,8 @@
 #include "game.h"
 
-void update_and_render(struct Game *game, struct Input *input, struct Color *out_colors, int pixel_count, double delta_time) {
+void update_and_render(struct Game *game, struct Platform *platform, double delta_time) {
+	struct Input *input = &platform->input;
+
 	// Set move from just pressed input
 	if(input->w == true && game->previous_input.w == false) {
 		game->next_move.x = 0;
@@ -28,20 +30,25 @@ void update_and_render(struct Game *game, struct Input *input, struct Color *out
 
 	// Render
 	// Draw background
+	int pixel_count = platform->win_h * platform->win_w;
 	struct Color bg = {0.1, 0.1, 0.1};
 	for(int i = 0; i < pixel_count; ++i) {
-		out_colors[i] = bg; 
+		platform->pixels[i] = bg; 
 	}
-	// Draw tiles
-	for(int y = 0; y < HEIGHT; ++y) {
-		for(int x = 0; x < WIDTH; ++x) {
-			// Calculate tile rect
-			int rx;
-			int ry;
-			int rw;
-			int rh;
 
-			// Draw rect
+	double tile_gap = 8; 
+	double tile_size = 48;
+	double left_edge = ((double)platform->win_w / 2) - (((double)COLUMNS / 2) * tile_size) - (((double)COLUMNS / 2) * tile_gap);
+	double top_edge = ((double)platform->win_h / 2) - (((double)ROWS / 2) * tile_size) - (((double)ROWS / 2) * tile_gap);
+	// Draw tiles
+	for(int y = 0; y < ROWS; ++y) {
+		for(int x = 0; x < COLUMNS; ++x) {
+			// Calculate tile rect
+			int rx = left_edge + (x * tile_size) + (x * tile_gap);
+			int ry = top_edge + (y * tile_size) + (y * tile_gap);
+			int rw = tile_size;
+			int rh = tile_size;
+			
 		}
 	}
 }

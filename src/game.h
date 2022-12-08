@@ -3,8 +3,8 @@
 #include "color.h"
 #include "platform.h"
 
-#define WIDTH 16
-#define HEIGHT 16
+#define ROWS 16
+#define COLUMNS 16
 #define MAX_SNAKE_LENGTH 128
 
 struct Coordinate {
@@ -13,7 +13,7 @@ struct Coordinate {
 };
 
 struct Game {
-	struct Color tiles[HEIGHT][WIDTH];
+	struct Color tiles[ROWS][COLUMNS];
 	struct Coordinate snake[MAX_SNAKE_LENGTH];
 	int snake_length;
 	double step_length;
@@ -22,5 +22,5 @@ struct Game {
 	struct Coordinate next_move;
 };
 
-void update_and_render(struct Game *game, struct Input *input, struct Color *out_colors, int pixel_count, double delta_time);
+void update_and_render(struct Game *game, struct Platform *platform, double delta_time);
 void step(struct Game *game);

@@ -45,13 +45,14 @@ struct Input input_from_platform() {
 	return input;
 }
 
-void render_to_platform(struct Color *color, struct Platform *platform) {
+void render(struct Platform *platform) {
 	SDL_SetRenderDrawColor(platform->renderer, 0, 0, 0, 255);
 	SDL_RenderClear(platform->renderer);
 	for(int i = 0; i < platform->win_w * platform->win_h; ++i) {
 		int y = i / platform->win_w;
 		int x = i - y * platform->win_w;
-		SDL_SetRenderDrawColor(platform->renderer, color[i].r * 255, color[i].g * 255, color[i].b * 255, 255);
+		struct Color *color = &platform->pixels[i];
+		SDL_SetRenderDrawColor(platform->renderer, color->r * 255, color->g * 255, color->b * 255, 255);
 		SDL_RenderDrawPoint(platform->renderer, x, y);
 	}
 	SDL_RenderPresent(platform->renderer);

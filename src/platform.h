@@ -17,9 +17,10 @@ struct Platform {
 	int win_w;
 	int win_h;
 	struct Input input;
+	struct Color *pixels;
 };
 
 struct Platform init_platform();
 struct Input input_from_platform();
-void render_to_platform(struct Color colors[], struct Platform *platform);
+void render(struct Platform *platform);
  
