@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/thejovialknight/repos/c-snake/src/game.c" "CMakeFiles/csnake.dir/src/game.c.o" "gcc" "CMakeFiles/csnake.dir/src/game.c.o.d"
-  "/home/thejovialknight/repos/c-snake/src/main.c" "CMakeFiles/csnake.dir/src/main.c.o" "gcc" "CMakeFiles/csnake.dir/src/main.c.o.d"
-  "/home/thejovialknight/repos/c-snake/src/platform.c" "CMakeFiles/csnake.dir/src/platform.c.o" "gcc" "CMakeFiles/csnake.dir/src/platform.c.o.d"
+  "/home/conner/repos/c-snake/src/game.c" "CMakeFiles/csnake.dir/src/game.c.o" "gcc" "CMakeFiles/csnake.dir/src/game.c.o.d"
+  "/home/conner/repos/c-snake/src/main.c" "CMakeFiles/csnake.dir/src/main.c.o" "gcc" "CMakeFiles/csnake.dir/src/main.c.o.d"
+  "/home/conner/repos/c-snake/src/platform.c" "CMakeFiles/csnake.dir/src/platform.c.o" "gcc" "CMakeFiles/csnake.dir/src/platform.c.o.d"
   )
 
 # Targets to which this target links.

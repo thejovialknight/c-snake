@@ -22,5 +22,5 @@ struct Platform {
 
 struct Platform init_platform();
 struct Input input_from_platform();
+void draw_pixel(struct Platform *platform, struct Color color, int x, int y);
 void render(struct Platform *platform);
- 

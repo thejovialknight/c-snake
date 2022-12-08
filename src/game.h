@@ -14,7 +14,9 @@ struct Coordinate {
 
 struct Game {
 	struct Color tiles[ROWS][COLUMNS];
+	struct Coordinate food;
 	struct Coordinate snake[MAX_SNAKE_LENGTH];
+	struct Coordinate direction;
 	int snake_length;
 	double step_length;
 	double time_to_next_step;
@@ -23,4 +25,6 @@ struct Game {
 };
 
 void update_and_render(struct Game *game, struct Platform *platform, double delta_time);
+void start_game(struct Game *game);
+void draw_cell(struct Platform *platform, struct Color color, int x, int y);
 void step(struct Game *game);

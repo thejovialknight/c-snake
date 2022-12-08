@@ -3,6 +3,7 @@
 #include "SDL_events.h"
 #include "SDL_render.h"
 #include "SDL_video.h"
+#include <stdio.h>
 
 struct Platform init_platform() {
 	struct Platform platform;
@@ -16,6 +17,10 @@ struct Platform init_platform() {
 
 struct Input input_from_platform() {
 	struct Input input;
+	input.w = false;
+	input.a = false;
+	input.s = false;
+	input.d = false;
 	SDL_Event event;
 	while(SDL_PollEvent(&event) != 0) {
 		if(event.type == SDL_QUIT) {
@@ -43,6 +48,10 @@ struct Input input_from_platform() {
 	}
 
 	return input;
+}
+
+void draw_pixel(struct Platform *platform, struct Color color, int x, int y) {
+	platform->pixels[x + y * platform->win_w] = color;
 }
 
 void render(struct Platform *platform) {

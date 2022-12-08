@@ -1,17 +1,17 @@
 [
 {
-  "directory": "/home/thejovialknight/repos/c-snake/build",
-  "command": "/usr/bin/cc  -I/home/thejovialknight/repos/c-snake/include -I/usr/include/SDL2 -std=gnu99 -o CMakeFiles/csnake.dir/src/game.c.o -c /home/thejovialknight/repos/c-snake/src/game.c",
-  "file": "/home/thejovialknight/repos/c-snake/src/game.c"
+  "directory": "/home/conner/repos/c-snake/build",
+  "command": "/usr/bin/cc  -I/home/conner/repos/c-snake/include -I/usr/include/SDL2 -std=gnu99 -o CMakeFiles/csnake.dir/src/game.c.o -c /home/conner/repos/c-snake/src/game.c",
+  "file": "/home/conner/repos/c-snake/src/game.c"
 },
 {
-  "directory": "/home/thejovialknight/repos/c-snake/build",
-  "command": "/usr/bin/cc  -I/home/thejovialknight/repos/c-snake/include -I/usr/include/SDL2 -std=gnu99 -o CMakeFiles/csnake.dir/src/main.c.o -c /home/thejovialknight/repos/c-snake/src/main.c",
-  "file": "/home/thejovialknight/repos/c-snake/src/main.c"
+  "directory": "/home/conner/repos/c-snake/build",
+  "command": "/usr/bin/cc  -I/home/conner/repos/c-snake/include -I/usr/include/SDL2 -std=gnu99 -o CMakeFiles/csnake.dir/src/main.c.o -c /home/conner/repos/c-snake/src/main.c",
+  "file": "/home/conner/repos/c-snake/src/main.c"
 },
 {
-  "directory": "/home/thejovialknight/repos/c-snake/build",
-  "command": "/usr/bin/cc  -I/home/thejovialknight/repos/c-snake/include -I/usr/include/SDL2 -std=gnu99 -o CMakeFiles/csnake.dir/src/platform.c.o -c /home/thejovialknight/repos/c-snake/src/platform.c",
-  "file": "/home/thejovialknight/repos/c-snake/src/platform.c"
+  "directory": "/home/conner/repos/c-snake/build",
+  "command": "/usr/bin/cc  -I/home/conner/repos/c-snake/include -I/usr/include/SDL2 -std=gnu99 -o CMakeFiles/csnake.dir/src/platform.c.o -c /home/conner/repos/c-snake/src/platform.c",
+  "file": "/home/conner/repos/c-snake/src/platform.c"
 }
 ]

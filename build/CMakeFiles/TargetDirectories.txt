@@ -1,3 +1,3 @@
-/home/thejovialknight/repos/c-snake/build/CMakeFiles/csnake.dir
-/home/thejovialknight/repos/c-snake/build/CMakeFiles/edit_cache.dir
-/home/thejovialknight/repos/c-snake/build/CMakeFiles/rebuild_cache.dir
+/home/conner/repos/c-snake/build/CMakeFiles/csnake.dir
+/home/conner/repos/c-snake/build/CMakeFiles/edit_cache.dir
+/home/conner/repos/c-snake/build/CMakeFiles/rebuild_cache.dir
