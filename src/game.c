@@ -1,6 +1,50 @@
 #include "game.h"
 
 void update_and_render(struct Game *game, struct Platform *platform, double delta_time) {
+	if(game->state == GAME_RUNNING) update_running(game, platform, delta_time);
+	else update_interstitial(game, platform, delta_time);
+}
+
+void update_interstitial(struct Game *game, struct Platform *platform, double delta_time) {
+	game->time_to_next_step -= delta_time;
+	if(game->time_to_next_step <= 0) {
+		game->time_to_next_step = 0.01;
+		if(game->countdown_coordinate.x + 1 >= COLUMNS) {
+			game->countdown_coordinate.x = 0;
+			game->countdown_coordinate.y++;
+			if(game->countdown_coordinate.y >= ROWS) {
+				game->state = GAME_RUNNING;
+			}
+		}
+	}
+
+	draw_background_and_tiles(platform);
+
+	// Draw countdown tiles
+	double tile_brightness = 0.75;
+	int tile_index_offset = 0;
+	while(tile_brightness > 0) {
+		struct Coordinate tile_coord = game->countdown_coordinate;
+		int tile_index_walkback = 0;
+		while(tile_index_walkback < tile_index_offset) {
+			tile_index_walkback++;
+			if(tile_coord.x - 1 < 0) {
+				tile_coord.x = COLUMNS - 1;
+				tile_coord.y--;
+			}
+			else {
+				tile_coord.x--;
+			}
+		}
+		if(tile_coord.y >= 0 && tile_coord.y < ROWS) {
+			struct Color color = {0.25, tile_brightness, tile_brightness};
+			draw_cell(platform, color, tile_coord.x, tile_coord.y);
+		}
+		tile_brightness -= 0.1;
+	}
+}
+
+void update_running(struct Game *game, struct Platform *platform, double delta_time) {
 	////////////
 	// UPDATE //
 	////////////
@@ -48,20 +92,7 @@ void update_and_render(struct Game *game, struct Platform *platform, double delt
 	////////////
 	// Render //
 	////////////
-	// Draw background
-	int pixel_count = platform->win_h * platform->win_w;
-	struct Color bg = {0.1, 0.1, 0.1};
-	for(int i = 0; i < pixel_count; ++i) {
-		platform->pixels[i] = bg; 
-	}
-
-	// Draw tiles
-	for(int y = 0; y < ROWS; ++y) {
-		for(int x = 0; x < COLUMNS; ++x) {
-			struct Color color = {0.5, 0.5, 0.5};
-			draw_cell(platform, color, x, y);
-		}
-	}
+	draw_background_and_tiles(platform);
 
 	// Draw food
 	struct Color food_color = {0.75, 0.25, 0.25};
@@ -129,6 +160,10 @@ void step(struct Game *game) {
 }
 
 void start_game(struct Game *game) {
+	game->state = GAME_INTERSTITIAL;
+	struct Coordinate inter_coord = {0, 0};
+	game->countdown_coordinate = inter_coord;
+
 	game->snake_length = 2;
 	struct Coordinate snake_head = {
 		COLUMNS / 2,
@@ -148,6 +183,23 @@ void start_game(struct Game *game) {
 	game->time_to_next_step = game->step_length;
 	
 	move_food(game);
+}
+
+void draw_background_and_tiles(struct Platform *platform) {
+	// Draw background
+	int pixel_count = platform->win_h * platform->win_w;
+	struct Color bg = {0.1, 0.1, 0.1};
+	for(int i = 0; i < pixel_count; ++i) {
+		platform->pixels[i] = bg; 
+	}
+
+	// Draw tiles
+	for(int y = 0; y < ROWS; ++y) {
+		for(int x = 0; x < COLUMNS; ++x) {
+			struct Color color = {0.5, 0.5, 0.5};
+			draw_cell(platform, color, x, y);
+		}
+	}
 }
 
 void draw_cell(struct Platform *platform, struct Color color, int x, int y) {

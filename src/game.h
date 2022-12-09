@@ -4,29 +4,38 @@
 #include "color.h"
 #include "platform.h"
 
-#define ROWS 16
-#define COLUMNS 16
-#define MAX_SNAKE_LENGTH 128
+#define ROWS 12
+#define COLUMNS 12
 
 struct Coordinate {
 	int x;
 	int y;
 };
 
+enum GameState {
+	GAME_INTERSTITIAL,
+	GAME_RUNNING
+};
+
 struct Game {
+	enum GameState state; 
 	struct Color tiles[ROWS][COLUMNS];
 	struct Coordinate food;
-	struct Coordinate snake[MAX_SNAKE_LENGTH];
+	struct Coordinate snake[ROWS * COLUMNS];
 	struct Coordinate direction;
 	int snake_length;
 	double step_length;
 	double time_to_next_step;
 	struct Input previous_input;
 	struct Coordinate next_move;
+	struct Coordinate countdown_coordinate;
 };
 
 void update_and_render(struct Game *game, struct Platform *platform, double delta_time);
+void update_interstitial(struct Game *game, struct Platform *platform, double delta_time);
+void update_running(struct Game *game, struct Platform *platform, double delta_time);
 void step(struct Game *game);
 void start_game(struct Game *game);
+void draw_background_and_tiles(struct Platform *platform);
 void draw_cell(struct Platform *platform, struct Color color, int x, int y);
 void move_food(struct Game *game);
