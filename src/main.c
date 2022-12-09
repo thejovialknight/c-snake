@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 #include <SDL2/SDL.h>
 #include "platform.h"
 #include "game.h"
@@ -12,6 +14,9 @@ int main(int argc, char* argv[]) {
 
 	int pixel_count = platform.win_w * platform.win_h;
 	platform.pixels = (struct Color*)malloc(pixel_count * sizeof(struct Color)) ;
+
+	// Seed random number generator
+	srand(time(NULL));
 
 	bool quit = false;
 	while(!quit) {

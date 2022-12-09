@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "../bin/csnake"
-  "../bin/csnake.pdb"
+  "/home/thejovialknight/repos/c-snake/bin/csnake"
+  "/home/thejovialknight/repos/c-snake/bin/csnake.pdb"
   "CMakeFiles/csnake.dir/src/game.c.o"
   "CMakeFiles/csnake.dir/src/game.c.o.d"
   "CMakeFiles/csnake.dir/src/main.c.o"

@@ -1,5 +1,6 @@
 #pragma once
 #include <stdbool.h>
+#include <stdlib.h>
 #include "color.h"
 #include "platform.h"
 
@@ -25,6 +26,7 @@ struct Game {
 };
 
 void update_and_render(struct Game *game, struct Platform *platform, double delta_time);
+void step(struct Game *game);
 void start_game(struct Game *game);
 void draw_cell(struct Platform *platform, struct Color color, int x, int y);
-void step(struct Game *game);
+void move_food(struct Game *game);

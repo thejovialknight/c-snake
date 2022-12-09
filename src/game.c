@@ -39,10 +39,11 @@ void update_and_render(struct Game *game, struct Platform *platform, double delt
 		step(game);
 	}
 
+	// Reset input
 	game->previous_input.w = input->w;
-	game->previous_input.a = input->w;
-	game->previous_input.s = input->w;
-	game->previous_input.d = input->w;
+	game->previous_input.a = input->a;
+	game->previous_input.s = input->s;
+	game->previous_input.d = input->d;
 
 	////////////
 	// Render //
@@ -72,45 +73,6 @@ void update_and_render(struct Game *game, struct Platform *platform, double delt
 	draw_cell(platform, snake_head_color, game->snake[0].x, game->snake[0].y);
 	for(int i = 1; i < game->snake_length; ++i) {
 		draw_cell(platform, snake_color, game->snake[i].x, game->snake[i].y);
-	}
-}
-
-void start_game(struct Game *game) {
-	game->snake_length = 2;
-	struct Coordinate snake_head = {
-		COLUMNS / 2,
-		ROWS / 2
-	};
-	game->snake[0] = snake_head;
-	game->snake[1] = snake_head;
-	game->snake[1].x -= 1;
-	game->snake[2] = snake_head;
-	game->snake[2].x -= 2;
-
-	struct Coordinate next_move = {1, 0};
-	game->next_move = next_move;
-	game->direction = game->next_move;
-
-	game->step_length = 0.1;
-	game->time_to_next_step = game->step_length;
-	
-	struct Coordinate food_pos = {4, 4};
-	game->food = food_pos;
-}
-
-void draw_cell(struct Platform *platform, struct Color color, int x, int y) {
-	double tile_gap = 8; 
-	double tile_size = 32;
-	double left_edge = ((double)platform->win_w / 2) - (((double)COLUMNS / 2) * tile_size) - (((double)COLUMNS / 2) * tile_gap);
-	double top_edge = ((double)platform->win_h / 2) - (((double)ROWS / 2) * tile_size) - (((double)ROWS / 2) * tile_gap);
-	int rx = left_edge + (x * tile_size) + (x * tile_gap);
-	int ry = top_edge + (y * tile_size) + (y * tile_gap);
-	int rw = tile_size;
-	int rh = tile_size;
-	for(int y = ry; y < ry + rh; ++y) {
-		for(int x = rx; x < rx + rw; ++x) {
-			draw_pixel(platform, color, x, y); 
-		}
 	}
 }
 
@@ -150,7 +112,10 @@ void step(struct Game *game) {
 	if(snake_head->x == game->food.x && snake_head->y == game->food.y) {
 		game->snake_length++;
 		
-		// Move food
+		// Move food randomly
+		move_food(game);
+
+		/* Move food hardcoded
 		if(game->food.x != 11) {
 			game->food.x = 11;
 			game->food.y = 13;
@@ -159,6 +124,49 @@ void step(struct Game *game) {
 			game->food.x = 4;
 			game->food.y = 4;
 		}
+		*/
 	}
 }
 
+void start_game(struct Game *game) {
+	game->snake_length = 2;
+	struct Coordinate snake_head = {
+		COLUMNS / 2,
+		ROWS / 2
+	};
+	game->snake[0] = snake_head;
+	game->snake[1] = snake_head;
+	game->snake[1].x -= 1;
+	game->snake[2] = snake_head;
+	game->snake[2].x -= 2;
+
+	struct Coordinate next_move = {1, 0};
+	game->next_move = next_move;
+	game->direction = game->next_move;
+
+	game->step_length = 0.1;
+	game->time_to_next_step = game->step_length;
+	
+	move_food(game);
+}
+
+void draw_cell(struct Platform *platform, struct Color color, int x, int y) {
+	double tile_gap = 8; 
+	double tile_size = 32;
+	double left_edge = ((double)platform->win_w / 2) - (((double)COLUMNS / 2) * tile_size) - (((double)COLUMNS / 2) * tile_gap);
+	double top_edge = ((double)platform->win_h / 2) - (((double)ROWS / 2) * tile_size) - (((double)ROWS / 2) * tile_gap);
+	int rx = left_edge + (x * tile_size) + (x * tile_gap);
+	int ry = top_edge + (y * tile_size) + (y * tile_gap);
+	int rw = tile_size;
+	int rh = tile_size;
+	for(int y = ry; y < ry + rh; ++y) {
+		for(int x = rx; x < rx + rw; ++x) {
+			draw_pixel(platform, color, x, y); 
+		}
+	}
+}
+
+void move_food(struct Game *game) {
+	game->food.x = rand() % COLUMNS;
+	game->food.y = rand() % ROWS;
+}
