@@ -1,6 +1,7 @@
 #include "game.h"
 
 void update_and_render(struct Game *game, struct Platform *platform, double delta_time) {
+	game->orientation = get_board_orientation(platform);
 	if(game->state == GAME_RUNNING) update_running(game, platform, delta_time);
 	else update_interstitial(game, platform, delta_time);
 }
@@ -8,7 +9,7 @@ void update_and_render(struct Game *game, struct Platform *platform, double delt
 void update_interstitial(struct Game *game, struct Platform *platform, double delta_time) {
 	game->time_to_next_step -= delta_time;
 	if(game->time_to_next_step <= 0) {
-		game->time_to_next_step = 0.01;
+		game->time_to_next_step = 0.0001;
 		if(game->countdown_coordinate.x + 1 >= COLUMNS) {
 			game->countdown_coordinate.x = 0;
 			game->countdown_coordinate.y++;
@@ -16,9 +17,12 @@ void update_interstitial(struct Game *game, struct Platform *platform, double de
 				game->state = GAME_RUNNING;
 			}
 		}
+		else {
+			game->countdown_coordinate.x++;
+		}
 	}
 
-	draw_background_and_tiles(platform);
+	draw_background_and_tiles(platform, &game->orientation);
 
 	// Draw countdown tiles
 	double tile_brightness = 0.75;
@@ -38,9 +42,10 @@ void update_interstitial(struct Game *game, struct Platform *platform, double de
 		}
 		if(tile_coord.y >= 0 && tile_coord.y < ROWS) {
 			struct Color color = {0.25, tile_brightness, tile_brightness};
-			draw_cell(platform, color, tile_coord.x, tile_coord.y);
+			draw_cell(platform, &game->orientation, color, tile_coord.x, tile_coord.y);
 		}
 		tile_brightness -= 0.1;
+		tile_index_offset++;
 	}
 }
 
@@ -92,19 +97,19 @@ void update_running(struct Game *game, struct Platform *platform, double delta_t
 	////////////
 	// Render //
 	////////////
-	draw_background_and_tiles(platform);
-
-	// Draw food
-	struct Color food_color = {0.75, 0.25, 0.25};
-	draw_cell(platform, food_color, game->food.x, game->food.y);
+	draw_background_and_tiles(platform, &game->orientation);
 
 	// Draw snake
-	struct Color snake_head_color = {0.25, 0.75, 0.25};
-	struct Color snake_color = {0.25, 0.25, 0.75};
-	draw_cell(platform, snake_head_color, game->snake[0].x, game->snake[0].y);
+	struct Color snake_head_color = {0.5, 0.5, 0.5};
+	struct Color snake_color = {0.35, 0.35, 0.35};
+	draw_cell(platform, &game->orientation, snake_head_color, game->snake[0].x, game->snake[0].y);
 	for(int i = 1; i < game->snake_length; ++i) {
-		draw_cell(platform, snake_color, game->snake[i].x, game->snake[i].y);
+		draw_cell(platform, &game->orientation, snake_color, game->snake[i].x, game->snake[i].y);
 	}
+
+	// Draw food
+	struct Color food_color = {0.5, 0.1, 0.1};
+	draw_cell(platform, &game->orientation, food_color, game->food.x, game->food.y);
 }
 
 void step(struct Game *game) {
@@ -145,17 +150,6 @@ void step(struct Game *game) {
 		
 		// Move food randomly
 		move_food(game);
-
-		/* Move food hardcoded
-		if(game->food.x != 11) {
-			game->food.x = 11;
-			game->food.y = 13;
-		}
-		else {
-			game->food.x = 4;
-			game->food.y = 4;
-		}
-		*/
 	}
 }
 
@@ -185,7 +179,7 @@ void start_game(struct Game *game) {
 	move_food(game);
 }
 
-void draw_background_and_tiles(struct Platform *platform) {
+void draw_background_and_tiles(struct Platform *platform, struct BoardOrientation *orientation) {
 	// Draw background
 	int pixel_count = platform->win_h * platform->win_w;
 	struct Color bg = {0.1, 0.1, 0.1};
@@ -196,26 +190,29 @@ void draw_background_and_tiles(struct Platform *platform) {
 	// Draw tiles
 	for(int y = 0; y < ROWS; ++y) {
 		for(int x = 0; x < COLUMNS; ++x) {
-			struct Color color = {0.5, 0.5, 0.5};
-			draw_cell(platform, color, x, y);
+			struct Color color = {0.2, 0.2, 0.2};
+			draw_cell(platform, orientation, color, x, y);
 		}
 	}
 }
 
-void draw_cell(struct Platform *platform, struct Color color, int x, int y) {
-	double tile_gap = 8; 
-	double tile_size = 32;
-	double left_edge = ((double)platform->win_w / 2) - (((double)COLUMNS / 2) * tile_size) - (((double)COLUMNS / 2) * tile_gap);
-	double top_edge = ((double)platform->win_h / 2) - (((double)ROWS / 2) * tile_size) - (((double)ROWS / 2) * tile_gap);
-	int rx = left_edge + (x * tile_size) + (x * tile_gap);
-	int ry = top_edge + (y * tile_size) + (y * tile_gap);
-	int rw = tile_size;
-	int rh = tile_size;
-	for(int y = ry; y < ry + rh; ++y) {
-		for(int x = rx; x < rx + rw; ++x) {
+void draw_cell(struct Platform *platform, struct BoardOrientation *orientation, struct Color color, int x, int y) {
+	int rx = orientation->left_edge + (x * orientation->tile_size) + (x * orientation->tile_gap);
+	int ry = orientation->top_edge + (y * orientation->tile_size) + (y * orientation->tile_gap);
+	for(int y = ry; y < ry + orientation->tile_size; ++y) {
+		for(int x = rx; x < rx + orientation->tile_size; ++x) {
 			draw_pixel(platform, color, x, y); 
 		}
 	}
+}
+
+struct BoardOrientation get_board_orientation(struct Platform *platform) {
+	struct BoardOrientation orientation;
+	orientation.tile_gap = 8; 
+	orientation.tile_size = (double)platform->win_h / ROWS - orientation.tile_gap - 2;
+	orientation.left_edge = ((double)platform->win_w / 2) - (((double)COLUMNS / 2) * orientation.tile_size) - (((double)COLUMNS / 2) * orientation.tile_gap);
+	orientation.top_edge = ((double)platform->win_h / 2) - (((double)ROWS / 2) * orientation.tile_size) - (((double)ROWS / 2) * orientation.tile_gap);
+	return orientation;
 }
 
 void move_food(struct Game *game) {

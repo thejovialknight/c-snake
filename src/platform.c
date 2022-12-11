@@ -8,9 +8,9 @@
 struct Platform init_platform() {
 	struct Platform platform;
 	SDL_Init(SDL_INIT_EVERYTHING);
-	platform.win_w = 1280;
-	platform.win_h = 720; 
-	platform.window = SDL_CreateWindow("cnake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, platform.win_w, platform.win_h, SDL_WINDOW_SHOWN);
+	platform.win_w = 2560;
+	platform.win_h = 1440; 
+	platform.window = SDL_CreateWindow("cnake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, platform.win_w, platform.win_h, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	platform.renderer = SDL_CreateRenderer(platform.window, -1, SDL_RENDERER_ACCELERATED);
 	return platform;
 }
@@ -40,6 +40,9 @@ struct Input input_from_platform() {
 					break;
 				case SDLK_d:
 					input.d = true;
+					break;
+				case SDLK_ESCAPE:
+					input.quit = true;
 					break;
 				default:
 					break;
