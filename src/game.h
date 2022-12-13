@@ -45,6 +45,6 @@ void update_running(struct Game *game, struct Platform *platform, double delta_t
 void step(struct Game *game);
 void start_game(struct Game *game);
 void draw_background_and_tiles(struct Platform *platform, struct BoardOrientation *orientation);
-void draw_cell(struct Platform *platform, struct BoardOrientation *orientation, struct Color color, int x, int y);
+void draw_cell(struct Platform *platform, struct BoardOrientation *orientation, struct Color *color, int x, int y);
 struct BoardOrientation get_board_orientation(struct Platform *platform);
 void move_food(struct Game *game);

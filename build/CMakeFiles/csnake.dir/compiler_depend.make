@@ -49,6 +49,10 @@ CMakeFiles/csnake.dir/src/game.c.o: ../src/game.c \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   ../src/color.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   ../src/platform.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
@@ -72,13 +76,9 @@ CMakeFiles/csnake.dir/src/game.c.o: ../src/game.c \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/strings.h \
   /usr/include/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
   /usr/include/inttypes.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
-  /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/ctype.h \
   /usr/include/math.h \
   /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -433,6 +433,8 @@ CMakeFiles/csnake.dir/src/main.c.o: ../src/main.c \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/SDL_render.h \
+  /usr/include/SDL2/SDL_video.h \
   ../src/platform.h \
   ../src/color.h \
   ../src/game.h
@@ -653,6 +655,7 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
   ../src/color.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_events.h \
+  /usr/include/SDL2/SDL_pixels.h \
   /usr/include/SDL2/SDL_render.h \
   /usr/include/SDL2/SDL_video.h
 
@@ -777,12 +780,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/wbnoinvdintrin.h:
 
-/usr/include/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/cetintrin.h:
-
 /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
 
 /usr/include/SDL2/SDL_sensor.h:
@@ -807,6 +804,14 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/SDL2/SDL_touch.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx5124fmapsintrin.h:
 
 ../src/color.h:
@@ -816,10 +821,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/bmi2intrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
@@ -845,10 +846,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitxintrin.h:
 
-/usr/include/SDL2/begin_code.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/tbmintrin.h:
@@ -871,7 +868,9 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/include/features-time64.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
@@ -895,9 +894,13 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/include/inttypes.h:
 
-/usr/include/SDL2/close_code.h:
-
 /usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/xsavesintrin.h:
 
@@ -937,14 +940,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/SDL2/SDL_touch.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avxvnniintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
@@ -975,6 +970,24 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/SDL2/begin_code.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/bmi2intrin.h:
+
+/usr/include/SDL2/close_code.h:
+
+/usr/include/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/cetintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/wchar.h:
@@ -997,8 +1010,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 
 /usr/include/strings.h:
 
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
 /usr/include/SDL2/SDL_blendmode.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/shaintrin.h:
@@ -1010,14 +1021,6 @@ CMakeFiles/csnake.dir/src/platform.c.o: ../src/platform.c \
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/movdirintrin.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/gfniintrin.h:
 

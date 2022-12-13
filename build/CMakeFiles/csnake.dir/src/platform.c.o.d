@@ -177,5 +177,5 @@ CMakeFiles/csnake.dir/src/platform.c.o: \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
  /home/conner/repos/c-snake/src/color.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_render.h \
- /usr/include/SDL2/SDL_video.h
+ /usr/include/SDL2/SDL_events.h /usr/include/SDL2/SDL_pixels.h \
+ /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_video.h

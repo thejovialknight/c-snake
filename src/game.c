@@ -9,7 +9,7 @@ void update_and_render(struct Game *game, struct Platform *platform, double delt
 void update_interstitial(struct Game *game, struct Platform *platform, double delta_time) {
 	game->time_to_next_step -= delta_time;
 	if(game->time_to_next_step <= 0) {
-		game->time_to_next_step = 0.0001;
+		game->time_to_next_step = 0.00001;
 		if(game->countdown_coordinate.x + 1 >= COLUMNS) {
 			game->countdown_coordinate.x = 0;
 			game->countdown_coordinate.y++;
@@ -25,9 +25,13 @@ void update_interstitial(struct Game *game, struct Platform *platform, double de
 	draw_background_and_tiles(platform, &game->orientation);
 
 	// Draw countdown tiles
-	double tile_brightness = 0.75;
+	int tile_brightness = 225;
 	int tile_index_offset = 0;
-	while(tile_brightness > 0) {
+	while(tile_brightness > 50) {
+		tile_brightness -= 25;
+		if(tile_brightness < 50) {
+			tile_brightness = 50;
+		}
 		struct Coordinate tile_coord = game->countdown_coordinate;
 		int tile_index_walkback = 0;
 		while(tile_index_walkback < tile_index_offset) {
@@ -41,10 +45,9 @@ void update_interstitial(struct Game *game, struct Platform *platform, double de
 			}
 		}
 		if(tile_coord.y >= 0 && tile_coord.y < ROWS) {
-			struct Color color = {0.25, tile_brightness, tile_brightness};
-			draw_cell(platform, &game->orientation, color, tile_coord.x, tile_coord.y);
+			struct Color color = {50, tile_brightness, tile_brightness, 255};
+			draw_cell(platform, &game->orientation, &color, tile_coord.x, tile_coord.y);
 		}
-		tile_brightness -= 0.1;
 		tile_index_offset++;
 	}
 }
@@ -100,16 +103,16 @@ void update_running(struct Game *game, struct Platform *platform, double delta_t
 	draw_background_and_tiles(platform, &game->orientation);
 
 	// Draw snake
-	struct Color snake_head_color = {0.5, 0.5, 0.5};
-	struct Color snake_color = {0.35, 0.35, 0.35};
-	draw_cell(platform, &game->orientation, snake_head_color, game->snake[0].x, game->snake[0].y);
+	struct Color snake_head_color = {150, 150, 150, 255};
+	draw_cell(platform, &game->orientation, &snake_head_color, game->snake[0].x, game->snake[0].y);
+	struct Color snake_color = {100, 100, 100, 255};
 	for(int i = 1; i < game->snake_length; ++i) {
-		draw_cell(platform, &game->orientation, snake_color, game->snake[i].x, game->snake[i].y);
+		draw_cell(platform, &game->orientation, &snake_color, game->snake[i].x, game->snake[i].y);
 	}
 
 	// Draw food
-	struct Color food_color = {0.5, 0.1, 0.1};
-	draw_cell(platform, &game->orientation, food_color, game->food.x, game->food.y);
+	struct Color food_color = {150, 25, 25, 255};
+	draw_cell(platform, &game->orientation, &food_color, game->food.x, game->food.y);
 }
 
 void step(struct Game *game) {
@@ -173,7 +176,7 @@ void start_game(struct Game *game) {
 	game->next_move = next_move;
 	game->direction = game->next_move;
 
-	game->step_length = 0.1;
+	game->step_length = 0.15;
 	game->time_to_next_step = game->step_length;
 	
 	move_food(game);
@@ -181,22 +184,19 @@ void start_game(struct Game *game) {
 
 void draw_background_and_tiles(struct Platform *platform, struct BoardOrientation *orientation) {
 	// Draw background
-	int pixel_count = platform->win_h * platform->win_w;
-	struct Color bg = {0.1, 0.1, 0.1};
-	for(int i = 0; i < pixel_count; ++i) {
-		platform->pixels[i] = bg; 
-	}
+	struct Color bg = {25, 25, 25, 255};
+	fill_texture(platform, &bg);
 
 	// Draw tiles
 	for(int y = 0; y < ROWS; ++y) {
 		for(int x = 0; x < COLUMNS; ++x) {
-			struct Color color = {0.2, 0.2, 0.2};
-			draw_cell(platform, orientation, color, x, y);
+			struct Color color = {50, 50, 50, 255};
+			draw_cell(platform, orientation, &color, x, y);
 		}
 	}
 }
 
-void draw_cell(struct Platform *platform, struct BoardOrientation *orientation, struct Color color, int x, int y) {
+void draw_cell(struct Platform *platform, struct BoardOrientation *orientation, struct Color *color, int x, int y) {
 	int rx = orientation->left_edge + (x * orientation->tile_size) + (x * orientation->tile_gap);
 	int ry = orientation->top_edge + (y * orientation->tile_size) + (y * orientation->tile_gap);
 	for(int y = ry; y < ry + orientation->tile_size; ++y) {
@@ -209,7 +209,7 @@ void draw_cell(struct Platform *platform, struct BoardOrientation *orientation, 
 struct BoardOrientation get_board_orientation(struct Platform *platform) {
 	struct BoardOrientation orientation;
 	orientation.tile_gap = 8; 
-	orientation.tile_size = (double)platform->win_h / ROWS - orientation.tile_gap - 2;
+	orientation.tile_size = (double)platform->win_h / ROWS - orientation.tile_gap - 4;
 	orientation.left_edge = ((double)platform->win_w / 2) - (((double)COLUMNS / 2) * orientation.tile_size) - (((double)COLUMNS / 2) * orientation.tile_gap);
 	orientation.top_edge = ((double)platform->win_h / 2) - (((double)ROWS / 2) * orientation.tile_size) - (((double)ROWS / 2) * orientation.tile_gap);
 	return orientation;
